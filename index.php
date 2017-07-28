@@ -43,6 +43,28 @@ $app->get('/productos', function(Request $request, Response $response) use($db){
 
 //devolver un solo producto
 
+$app->get('/producto/{id}', function(Request $request, Response $response, $args ) use($db){
+
+    $sql = 'select * from productos where id = '.$args["id"];
+    $query = $db->query($sql);
+    $result = array(
+                "status" => "error",
+                "code" => 404,
+                "message" => "Producto no disponible"
+                );
+    if($query -> num_rows == 1){
+        $producto = $query->fetch_assoc();
+        $result = array(
+            "status" => "success",
+            "code" => 200,
+            "data" => $producto
+        );
+    }
+
+
+    echo json_encode($result);
+});
+
 //eliminar un producto
 
 //actualizar un producto
