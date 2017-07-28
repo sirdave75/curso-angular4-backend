@@ -92,6 +92,39 @@ $app->get('/delete-producto/{id}', function(Request $request, Response $response
 
 //actualizar un producto
 
+$app->post('/update-producto/{id}',function(Request $request, Response $response , $args) use($db){
+    $json = $request->getParsedBody();
+    $data = json_decode($json["json"],true);
+    if(!isset($data['nombre'])) $data['nombre'] = null;
+    if(!isset($data['description'])) $data['description'] = null;
+    if(!isset($data['precio'])) $data['precio'] = null;
+    if(!isset($data['imagen'])) $data['imagen'] = null;
+    $sql = "UPDATE productos set ".
+           "nombre = '{$data["nombre"]}', ".
+           "description = '{$data["description"]}', ".
+           "precio = '{$data["precio"]}' ".
+           "WHERE id = {$args["id"]}";
+
+    $query = $db->query($sql);
+
+    if($query){
+
+        $result = array(
+            "status" => "success",
+            "code" => 200,
+            "message" => "Producto actualizado correctamente"
+        );
+    }
+    else{
+        $result = array(
+            "status" => "error",
+            "code" => 404,
+            "message" => "El Producto no se ha actualizado correctamente"
+        );
+    }
+    echo json_encode($result);
+});
+
 //subir una imagen a un producto
 
 //guardar productos
