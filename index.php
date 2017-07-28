@@ -67,6 +67,29 @@ $app->get('/producto/{id}', function(Request $request, Response $response, $args
 
 //eliminar un producto
 
+$app->get('/delete-producto/{id}', function(Request $request, Response $response, $args ) use($db){
+   $sql = "DELETE from productos where id = ".$args["id"];
+
+   $query = $db->query($sql);
+
+    $result = array(
+        "status" => "error",
+        "code" => 404,
+        "message" => "Producto no eliminado"
+    );
+
+    if($query){
+
+        $result = array(
+            "status" => "success",
+            "code" => 200,
+            "message" => "Producto eliminado correctamente"
+        );
+    }
+    echo json_encode($result);
+
+});
+
 //actualizar un producto
 
 //subir una imagen a un producto
