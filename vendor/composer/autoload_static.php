@@ -63,12 +63,17 @@ class ComposerStaticInit0a8ff43922238301a11d5a6361c9d086
         ),
     );
 
+    public static $classMap = array (
+        'PiramideUploader' => __DIR__ . '/../..' . '/piramide-uploader/PiramideUploader.php',
+    );
+
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
             $loader->prefixLengthsPsr4 = ComposerStaticInit0a8ff43922238301a11d5a6361c9d086::$prefixLengthsPsr4;
             $loader->prefixDirsPsr4 = ComposerStaticInit0a8ff43922238301a11d5a6361c9d086::$prefixDirsPsr4;
             $loader->prefixesPsr0 = ComposerStaticInit0a8ff43922238301a11d5a6361c9d086::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInit0a8ff43922238301a11d5a6361c9d086::$classMap;
 
         }, null, ClassLoader::class);
     }
