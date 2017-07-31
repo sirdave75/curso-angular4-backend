@@ -1,0 +1,8 @@
+# Created by .ignore support plugin (hsz.mobi)
+.gitignore
+.idea/dataSources.local.xml
+.idea/vcs.xml
+.idea/workspace.xml
+curso-angular4-backend.zip
+piramide-uploader/uploads/
+uploads/
