@@ -104,6 +104,7 @@ $app->get('/delete-producto/{id}', function(Request $request, Response $response
 
 $app->post('/update-producto/{id}',function(Request $request, Response $response , $args) use($db){
     $json = $request->getParsedBody();
+
     $data = json_decode($json["json"],true);
     if(!isset($data['nombre'])) $data['nombre'] = null;
     if(!isset($data['descripcion'])) $data['descripcion'] = null;
@@ -113,12 +114,12 @@ $app->post('/update-producto/{id}',function(Request $request, Response $response
     $sql = "UPDATE productos set ".
            "nombre = '{$data["nombre"]}', ".
            "descripcion = '{$data["descripcion"]}', ".
-           "precio = '{$data["precio"]}' ".
+           "precio = '{$data["precio"]}', ".
            "imagen = '{$data["imagen"]}' ".
            "WHERE id = {$args["id"]}";
 
     $query = $db->query($sql);
-
+   // var_dump($sql);
     if($query){
 
         $result = array(
@@ -183,7 +184,7 @@ $app->post('/productos',function(Request $request, Response $response) use($app,
 
      $data = json_decode($json["json"],true);
 
-    var_dump($json);
+
 
      if(!isset($data['nombre'])) $data['nombre'] = null;
      if(!isset($data['descripcion'])) $data['descripcion'] = null;
@@ -196,7 +197,7 @@ $app->post('/productos',function(Request $request, Response $response) use($app,
              "'{$data['precio']}',".
              "'{$data['imagen']}'".
              ")";
-     var_dump($query);
+
 
      $insert = $db ->query($query);
     $result = array(
