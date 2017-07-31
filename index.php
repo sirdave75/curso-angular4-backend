@@ -106,13 +106,13 @@ $app->post('/update-producto/{id}',function(Request $request, Response $response
     $json = $request->getParsedBody();
     $data = json_decode($json["json"],true);
     if(!isset($data['nombre'])) $data['nombre'] = null;
-    if(!isset($data['description'])) $data['description'] = null;
+    if(!isset($data['descripcion'])) $data['descripcion'] = null;
     if(!isset($data['precio'])) $data['precio'] = null;
     if(!isset($data['imagen'])) $data['imagen'] = null;
 
     $sql = "UPDATE productos set ".
            "nombre = '{$data["nombre"]}', ".
-           "description = '{$data["description"]}', ".
+           "descripcion = '{$data["descripcion"]}', ".
            "precio = '{$data["precio"]}' ".
            "imagen = '{$data["imagen"]}' ".
            "WHERE id = {$args["id"]}";
@@ -186,13 +186,13 @@ $app->post('/productos',function(Request $request, Response $response) use($app,
     var_dump($json);
 
      if(!isset($data['nombre'])) $data['nombre'] = null;
-     if(!isset($data['description'])) $data['description'] = null;
+     if(!isset($data['descripcion'])) $data['descripcion'] = null;
      if(!isset($data['precio'])) $data['precio'] = null;
      if(!isset($data['imagen'])) $data['imagen'] = null;
 
      $query = "insert into productos values(NULL,".
              "'{$data['nombre']}',".
-             "'{$data['description']}',".
+             "'{$data['descripcion']}',".
              "'{$data['precio']}',".
              "'{$data['imagen']}'".
              ")";
